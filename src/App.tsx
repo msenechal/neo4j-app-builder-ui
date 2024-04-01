@@ -19,6 +19,10 @@ import ConnectionModal from './templates/shared/components/ConnectionModal';
 import Header from './templates/shared/components/Header';
 import User from './templates/shared/components/User';
 
+import { FileContextProvider } from './context/connectionFile';
+
+import './ConnectionModal.css';
+
 function App() {
   const messages = messagesData.listMessages;
   const [activeTab, setActiveTab] = useState<string>('Home');
@@ -33,7 +37,11 @@ function App() {
           <Route path='/cybersecurity-preview' element={<Cybersecurity />} />
           <Route
             path='/connection-modal-preview'
-            element={<ConnectionModal open={true} setOpenConnection={() => null} setConnectionStatus={() => null} />}
+            element={
+              <FileContextProvider>
+                <ConnectionModal open={true} setOpenConnection={() => null} setConnectionStatus={() => null} />
+              </FileContextProvider>
+            }
           />
           <Route path='/chat-widget-preview' element={<Chatbot messages={messages} />} />
           <Route
