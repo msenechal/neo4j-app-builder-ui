@@ -61,7 +61,7 @@ export default function ConnectionModal({
           }
 
           const [key, value] = line.split('=');
-          if (['NEO4J_URI', 'NEO4J_USERNAME', 'NEO4J_PASSWORD'].includes(key)) {
+          if (['NEO4J_URI', 'NEO4J_USERNAME', 'NEO4J_PASSWORD', 'NEO4J_DATABASE'].includes(key)) {
             acc[key] = value;
           }
           return acc;
@@ -69,6 +69,7 @@ export default function ConnectionModal({
         parseAndSetURI(configObject.NEO4J_URI);
         setUsername(configObject.NEO4J_USERNAME);
         setPassword(configObject.NEO4J_PASSWORD);
+        setDatabase(configObject.NEO4J_DATABASE);
       }
     }
     setIsLoading(false);
