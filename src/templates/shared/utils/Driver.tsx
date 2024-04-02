@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import neo4j, { Driver } from 'neo4j-driver';
 
-let driver: Driver;
+export let driver: Driver;
 
 export async function setDriver(connectionURI: string, username: string, password: string) {
   try {
