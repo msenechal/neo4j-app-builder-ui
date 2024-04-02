@@ -31,7 +31,7 @@ The accepted file format are either `.env` or `.txt` file with the following str
 | `NEO4J_PASSWORD`
 | Your neo4j password
 | password
-| `NEO4J_DATABASE?`
+| `NEO4J_DATABASE`
 | The database name
 | neo4j
 |===
