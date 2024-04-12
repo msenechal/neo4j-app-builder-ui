@@ -1,7 +1,7 @@
 {
-  "name": "neo4j-needle-starterkit",
+  "name": "neo4j-app-builder-ui",
   "private": true,
-  "version": "2.0",
+  "version": "dev",
   "type": "module",
   "scripts": {
     "dev": "vite",
