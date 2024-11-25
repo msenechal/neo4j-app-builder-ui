@@ -6,7 +6,7 @@ import {
   StatusIndicator,
   Tabs,
   TextInput,
-  Tip,
+  Tooltip,
   Typography,
   Widget,
 } from '@neo4j-ndl/react';
@@ -48,18 +48,18 @@ const columns = [
     header: () => <b>Status</b>,
     cell: (info) => (
       <>
-        <StatusIndicator type={info.getValue() != 'Up' ? 'danger' : 'success'} />
+        <StatusIndicator type={info.getValue() != 'Up' ? 'danger' : 'success'} className='mr-2' />
         {info.getValue().startsWith('CVE') ? (
           <div className='flex flex-column'>
             CVE Detected
-            <Tip>
-              <Tip.Trigger>
-                <InformationCircleIconOutline className='n-w-4 n-h-4 ml-2' />
-              </Tip.Trigger>
-              <Tip.Content>
-                <Tip.Body>{info.renderValue()}</Tip.Body>
-              </Tip.Content>
-            </Tip>
+            <Tooltip type='simple'>
+              <Tooltip.Trigger>
+                <InformationCircleIconOutline className='n-size-token-6 ml-2' />
+              </Tooltip.Trigger>
+              <Tooltip.Content>
+                <Tooltip.Body>{info.renderValue()}</Tooltip.Body>
+              </Tooltip.Content>
+            </Tooltip>
           </div>
         ) : (
           <>{info.renderValue()}</>
@@ -104,7 +104,6 @@ export default function Home() {
   return (
     <>
       <Header title='CyberSecurity' navItems={[]} useNeo4jConnect={false} userHeader={false} />
-
       <div className='landing-page n-bg-palette-neutral-bg-default'>
         <form className={`search-bar ${isSearchInitiated ? 'top' : 'center'}`} onSubmit={handleSearch}>
           <div
@@ -112,17 +111,19 @@ export default function Home() {
             className={`text-input-container ${isSearchInitiated ? 'search-initiated' : ''}`}
           >
             <TextInput
-              type='text'
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder='Search...'
               helpText='Search for server, IP, domain, etc.'
-              fluid={true}
-              rightIcon={
-                <IconButton aria-label='Search Icon' clean size='small' className='-mt-1' type='submit'>
+              isFluid={true}
+              rightElement={
+                <IconButton ariaLabel='Search Icon' isClean size='small' className='-mt-1'>
                   <MagnifyingGlassIconOutline className={isSearchInitiated ? 'n-w-4 n-h-4' : 'n-w-6 n-h-6'} />
                 </IconButton>
               }
+              htmlAttributes={{
+                type: 'text',
+                placeholder: 'Search...',
+              }}
             />
           </div>
         </form>
@@ -130,7 +131,9 @@ export default function Home() {
           className='n-bg-palette-neutral-bg-weak min-h-[60%] min-w-[60%] flex flex-col search-result'
           header=''
           isElevated={true}
-          id='search-result'
+          htmlAttributes={{
+            id: 'search-result',
+          }}
         >
           <Flex flexDirection='column' justifyContent='space-between'>
             <div>
@@ -145,7 +148,7 @@ export default function Home() {
                     tableInstance={table}
                     isKeyboardNavigable={false}
                     styling={{
-                      zebraStriping: true,
+                      hasZebraStriping: true,
                       borderStyle: 'none',
                       headerStyle: 'filled',
                     }}
@@ -184,7 +187,7 @@ export default function Home() {
                 )}
               </Flex>
             </div>
-            <div className='text-center'>
+            <div className='text-center pb-2'>
               <>Results for "{searchQuery}"</>
             </div>
           </Flex>

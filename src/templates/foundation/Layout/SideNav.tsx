@@ -16,30 +16,36 @@ export default function SideNav() {
 
   return (
     <div className='h-[calc(100vh-58px)] min-h-[700px] flex'>
-      <SideNavigation iconMenu={true} expanded={expanded} {...expandedChangeProp}>
+      <SideNavigation hasIconMenu={true} isExpanded={expanded} {...expandedChangeProp}>
         <SideNavigation.List>
           <SideNavigation.Item
-            href='#'
-            selected={selected === 'search'}
-            onClick={handleClick('search')}
+            htmlAttributes={{
+              href: '#',
+              onClick: handleClick('search'),
+            }}
+            isSelected={selected === 'search'}
             {...(isMobile ? { icon: <MagnifyingGlassIconOutline className={fullSizeClasses} /> } : {})}
             icon={<MagnifyingGlassIconOutline className={fullSizeClasses} />}
           >
             Search
           </SideNavigation.Item>
           <SideNavigation.Item
-            href='#'
-            selected={selected === 'instances'}
-            onClick={handleClick('instances')}
+            htmlAttributes={{
+              href: '#',
+              onClick: handleClick('instances'),
+            }}
+            isSelected={selected === 'instances'}
             icon={<DbmsIcon className={fullSizeClasses} />}
           >
             Instances
           </SideNavigation.Item>
           <SideNavigation.GroupHeader>Example</SideNavigation.GroupHeader>
           <SideNavigation.Item
-            href='#'
-            selected={selected === 'notifications'}
-            onClick={handleClick('notifications')}
+            htmlAttributes={{
+              href: '#',
+              onClick: handleClick('notifications'),
+            }}
+            isSelected={selected === 'notifications'}
             icon={<BellAlertIconOutline className={fullSizeClasses} />}
           >
             Notifications

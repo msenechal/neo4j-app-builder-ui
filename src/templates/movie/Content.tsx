@@ -68,13 +68,13 @@ export default function Content({
           <div className='flex flex-col items-start gap-[10px]'>
             <Typography variant='h2'>Similar genre</Typography>
             <div className='flex items-center gap-[10px] p-[10px]'>
-              <ChevronLeftIconOutline className='n-w-32 n-h-32 self-center' />
+              <ChevronLeftIconOutline className='n-size-token-9 self-center' />
               <div className='flex gap-[20px]'>
                 {recoSimilarGenre.map((movie, index) => (
                   <Movie key={index} movie={movie} />
                 ))}
               </div>
-              <ChevronRightIconOutline className='n-w-32 n-h-32 self-center' />
+              <ChevronRightIconOutline className='n-size-token-9 self-center' />
             </div>
           </div>
         )}
@@ -88,13 +88,13 @@ export default function Content({
           <div className='flex flex-col items-start gap-[10px]'>
             <Typography variant='h2'>Users who watched {mainMovie[0]?.title} also watched this</Typography>
             <div className='flex items-center gap-[10px] p-[10px]'>
-              <ChevronLeftIconOutline className='n-w-32 n-h-32 self-center' />
+              <ChevronLeftIconOutline className='n-size-token-9 self-center' />
               <div className='flex gap-[20px]'>
                 {recoOtherUsers.map((movie, index) => (
                   <Movie key={index} movie={movie} />
                 ))}
               </div>
-              <ChevronRightIconOutline className='n-w-32 n-h-32 self-center' />
+              <ChevronRightIconOutline className='n-size-token-9 self-center' />
             </div>
           </div>
         )}

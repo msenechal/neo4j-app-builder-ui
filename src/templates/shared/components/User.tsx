@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Menu, Typography, IconButton, Avatar } from '@neo4j-ndl/react';
 import { ChevronDownIconOutline } from '@neo4j-ndl/react/icons';
 
 const settings = ['Profile', 'Logout'];
 
 export default function User() {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const handleClick = (event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const anchorEl = useRef<HTMLButtonElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
-    setAnchorEl(null);
+    setIsOpen(false);
   };
 
   const menuSelect = (e: string) => {
@@ -18,16 +16,13 @@ export default function User() {
     handleClose();
   };
 
-  const open = Boolean(anchorEl);
-
   return (
     <div
       className='hidden 
-      md:flex md:p-1.5 md:gap-2 md:h-12 md:items-center md:inline-block 
+      md:flex md:p-1.5 md:gap-2 md:h-12 md:items-center
       md:border md:border-[rgb(var(--theme-palette-neutral-border-strong))] md:rounded-xl'
     >
-      <Avatar className='md:flex hidden' name='JD' shape='square' size='large' type='letters' />
-
+      <Avatar className='md:flex hidden' name='JD' size='large' type='letters' shape='square' />
       <div className='flex flex-col'>
         <Typography variant='body-medium' className='p-0.5'>
           John Doe
@@ -37,7 +32,7 @@ export default function User() {
           john.doe@neo4j.com
         </Typography>
 
-        <Menu className='mt-1.5 ml-4' id='menu-appbar' anchorEl={anchorEl} open={open} onClose={handleClose}>
+        <Menu className='mt-11 ml-12' isOpen={isOpen} anchorRef={anchorEl} onClose={handleClose}>
           <Menu.Items>
             {settings.map((setting) => (
               <Menu.Item key={setting} onClick={() => menuSelect(setting)} title={setting} />
@@ -45,7 +40,7 @@ export default function User() {
           </Menu.Items>
         </Menu>
       </div>
-      <IconButton aria-label='settings' clean onClick={handleClick} open={open}>
+      <IconButton ariaLabel='settings' isClean onClick={() => setIsOpen(true)} ref={anchorEl}>
         <ChevronDownIconOutline />
       </IconButton>
     </div>

@@ -58,7 +58,7 @@ export default function Header({
           </div>
         </section>
 
-        <section className='flex w-1/3 shrink-0 grow-0 justify-center items-center mb-[-26px]'>
+        <section className='flex w-1/3 shrink-0 grow-0 justify-center items-center mb-[-24px]'>
           <Tabs size='large' fill='underline' onChange={(e) => setActiveNavItem(e)} value={activeNavItem}>
             {navItems.map((item) => (
               <Tabs.Tab tabId={item} key={item}>
@@ -72,7 +72,7 @@ export default function Header({
             <div className='flex grow-0 gap-x-1 w-max items-center pr-3'>
               {useNeo4jConnect ? (
                 <Switch
-                  checked={connectNeo4j}
+                  isChecked={connectNeo4j}
                   onChange={(e) => {
                     if (e.target.checked) {
                       openConnectionModal();
@@ -80,13 +80,13 @@ export default function Header({
                       setConnectNeo4j(false);
                     }
                   }}
-                  disabled={false}
-                  fluid={true}
+                  isDisabled={false}
+                  isFluid={true}
                   label={`Connect${connectNeo4j ? 'ed' : ''} to Neo4j`}
-                  labelBefore={true}
+                  hasLabelBefore={true}
                 />
               ) : null}
-              <IconButton aria-label='Toggle Dark mode' clean size='large' onClick={toggleColorMode}>
+              <IconButton ariaLabel='Toggle Dark mode' isClean size='large' onClick={toggleColorMode}>
                 {themeMode === 'dark' ? (
                   <span role='img' aria-label='sun'>
                     <SunIconOutline />
@@ -97,7 +97,7 @@ export default function Header({
                   </span>
                 )}
               </IconButton>
-              <IconButton className='hidden md:inline-flex' aria-label='Help' clean size='large'>
+              <IconButton className='hidden md:inline-flex' ariaLabel='Help' isClean size='large'>
                 <QuestionMarkCircleIconOutline />
               </IconButton>
 

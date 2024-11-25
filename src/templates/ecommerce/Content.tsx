@@ -66,7 +66,7 @@ export default function Content() {
                   tableInstance={table}
                   isKeyboardNavigable={false}
                   styling={{
-                    zebraStriping: true,
+                    hasZebraStriping: true,
                     borderStyle: 'none',
                     headerStyle: 'filled',
                   }}
