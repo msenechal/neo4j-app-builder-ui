@@ -7,9 +7,9 @@ export default function Movie({ movie }: { movie: MovieInterface }) {
 
   const boxStyle: CSSProperties = {
     transition: 'all 0.3s ease',
-    maxWidth: '400px',
+    maxWidth: '350px',
     position: 'relative',
-    transform: isHovered ? 'scale(1.5)' : 'scale(1)',
+    transform: isHovered ? 'scale(1.2)' : 'scale(1)',
     zIndex: isHovered ? '10' : '1',
     boxShadow: isHovered ? '0px 0px 20px rgba(0,0,0,0.5)' : 'none',
   };
@@ -18,7 +18,7 @@ export default function Movie({ movie }: { movie: MovieInterface }) {
     bottom: 0,
     left: 0,
     right: 0,
-    transform: isHovered ? 'translateY(0)' : 'translateY(100%)',
+    transform: isHovered ? 'translateY(0)' : 'translateY(70%)',
     display: isHovered ? 'inline-block' : 'none',
     transition: 'transform 1s ease',
     backgroundColor: 'rgb(var(--theme-palette-neutral-bg-stronger))',
@@ -27,7 +27,13 @@ export default function Movie({ movie }: { movie: MovieInterface }) {
   };
 
   return (
-    <Box onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={boxStyle}>
+    <Box
+      htmlAttributes={{
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false),
+      }}
+      style={boxStyle}
+    >
       <img src={movie.poster} alt={movie.title} className='w-full rounded-sm' />
       <div style={infoStyle}>
         <Typography className='md:flex hidden' variant='h6'>

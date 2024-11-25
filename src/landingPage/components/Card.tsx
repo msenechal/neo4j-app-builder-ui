@@ -28,7 +28,7 @@ export default function Card({
                 alt='Image description'
               />
               <div className='overlay-text w-full max-h-full object-contain'>
-                <EyeIconOutline className='n-w-6 n-h-6' />
+                <EyeIconOutline className='n-size-token-7' />
                 <Typography variant='body-medium'>View live preview</Typography>
               </div>
             </a>
@@ -41,10 +41,10 @@ export default function Card({
               <Typography variant='body-medium'>{description}</Typography>
             </div>
           </div>
-          <div className='Footer w-full flex content-center justify-center'>
+          <div className='Footer w-full flex content-center justify-center pb-4'>
             <Link to={sourceCode} target='_blank'>
               <Button>
-                <CodeBracketIconOutline className='n-w-6 n-h-6' /> &emsp; Source code
+                <CodeBracketIconOutline className='n-size-token-7' /> &emsp; Source code
               </Button>
             </Link>
           </div>
