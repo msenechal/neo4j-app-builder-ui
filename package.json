@@ -11,8 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@neo4j-ndl/base": "2.6.0",
-    "@neo4j-ndl/react": "2.6.2",
+    "@neo4j-ndl/base": "^3.0.14",
+    "@neo4j-ndl/react": "^3.0.24",
     "@tanstack/react-table": "^8.9.3",
     "autoprefixer": "^10.4.17",
     "eslint-plugin-react": "^7.33.2",
