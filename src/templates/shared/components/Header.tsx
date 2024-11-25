@@ -1,6 +1,6 @@
 import { MoonIconOutline, SunIconOutline, QuestionMarkCircleIconOutline } from '@neo4j-ndl/react/icons';
 import { Typography, IconButton, Tabs, Switch, Logo } from '@neo4j-ndl/react';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { ThemeWrapperContext } from '../../../context/ThemeWrapper';
 import User from './User';
 
@@ -14,6 +14,7 @@ export default function Header({
   setConnectNeo4j = () => {},
   openConnectionModal = () => {},
   userHeader = true,
+  documentation = "",
 }: {
   title: string;
   navItems?: string[];
@@ -24,6 +25,7 @@ export default function Header({
   setConnectNeo4j?: (connectNeo4j: boolean) => void;
   openConnectionModal?: () => void;
   userHeader?: boolean;
+  documentation?: string;
 }) {
   const themeUtils = React.useContext(ThemeWrapperContext);
   const [themeMode, setThemeMode] = useState<string>(themeUtils.colorMode);
@@ -34,6 +36,10 @@ export default function Header({
     });
     themeUtils.toggleColorMode();
   };
+
+  const handleURLClick = useCallback((url: string) => {
+    window.open(url, '_blank');
+  }, []);
 
   return (
     <div className='n-bg-palette-neutral-bg-weak p-1 border-b-2 border-[rgb(var(--theme-palette-neutral-border-weak))] h-16'>
@@ -97,7 +103,7 @@ export default function Header({
                   </span>
                 )}
               </IconButton>
-              <IconButton className='hidden md:inline-flex' ariaLabel='Help' isClean size='large'>
+              <IconButton onClick={() => handleURLClick(documentation)} className='hidden md:inline-flex' ariaLabel='Help' isClean size='large'>
                 <QuestionMarkCircleIconOutline />
               </IconButton>
 
