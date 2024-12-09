@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import {
   Button,
+  Checkbox,
   DataGrid,
   Dropzone,
   Flex,
   IconButton,
+  Radio,
   StatusIndicator,
   Switch,
   Tabs,
@@ -141,8 +143,10 @@ export default function Home() {
                 />
               </div>
               <Flex className='pt-6'>
-                <Switch checked label='Need a backend?' />
-                <Typography variant='h2'>Pick a language:</Typography>
+                <div className='ml-[40%]'>
+                  <Switch labelBefore checked label='Use a backend' />
+                </div>
+                <Typography variant='h2'>Language</Typography>
                 <div className='flex flex-col items-start md:flex-row gap-2.5 py-2.5'>
                   {backendOptions.map((option, index) => (
                     <>
@@ -169,7 +173,7 @@ export default function Home() {
                 </div>
                 {languageSelected && (
                   <>
-                    <Typography variant='h2'>Pick a framework:</Typography>
+                    <Typography variant='h2'>Framework</Typography>
                     <div className='flex flex-col items-start md:flex-row gap-2.5 py-2.5'>
                       {filteredFrameworkOptions.map((option, index) => (
                         <Widget
@@ -193,9 +197,24 @@ export default function Home() {
                       ))}
                     </div>
                     <div>
-                      <p>input Needs Sync or Async?</p>
-                      <p>input Needs SSO or native Auth?</p>
-                      <div className='n-flex max-h-24 h-24 w-[40%]'>
+                      <Typography variant='h1' className="pb-6">Additional settings</Typography>
+
+                      <div className='flex gap-12 pb-6'>
+                        <div className='flex flex-col'>
+                        <Typography variant='h4' className="pb-2">
+                          Async | Sync
+                        </Typography> 
+                          <Radio label='Sync' />
+                          <Radio label='Async' />
+                        </div>
+                        <div className='flex flex-col'>
+                        <Typography variant='h4' className="pb-2">
+                          SSO | Native
+                        </Typography> 
+                        <Radio label='Native' />
+                        <Radio label='SSO' />
+                        </div>
+                        <div className='n-flex max-h-24 h-24 w-[40%]'>
                         <Dropzone
                           isTesting={false}
                           customTitle={<>Drop your env file here</>}
@@ -215,6 +234,9 @@ export default function Home() {
                           }}
                         />
                       </div>
+                      </div>
+
+                      
                     </div>
                   </>
                 )}
