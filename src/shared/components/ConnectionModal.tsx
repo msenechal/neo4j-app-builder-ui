@@ -1,4 +1,4 @@
-import { Button, Dialog, TextInput, Dropdown, Banner, Dropzone } from '@neo4j-ndl/react';
+import { Button, Dialog, TextInput, Select, Banner, Dropzone } from '@neo4j-ndl/react';
 import { useState } from 'react';
 import { setDriver } from '../utils/Driver';
 
@@ -90,11 +90,32 @@ export default function ConnectionModal({
 
   return (
     <>
-      <Dialog size='small' open={open} aria-labelledby='form-dialog-title' disableCloseButton>
-        <Dialog.Header id='form-dialog-title'>Connect to Neo4j</Dialog.Header>
+      <Dialog
+        size='small'
+        isOpen={open}
+        hasDisabledCloseButton
+        htmlAttributes={{
+          'aria-labelledby': 'form-dialog-title',
+        }}
+      >
+        <Dialog.Header
+          htmlAttributes={{
+            id: 'form-dialog-title',
+          }}
+        >
+          Connect to Neo4j
+        </Dialog.Header>
         <Dialog.Content className='n-flex n-flex-col n-gap-token-4'>
-          {message && <Banner type={message.type}>{message.content}</Banner>}
-          {connectionMessage && <Banner type={connectionMessage.type}>{connectionMessage.content}</Banner>}
+          {message && (
+            <Banner type={message.type} usage='inline'>
+              {message.content}
+            </Banner>
+          )}
+          {connectionMessage && (
+            <Banner type={connectionMessage.type} usage='inline'>
+              {connectionMessage.content}
+            </Banner>
+          )}
           <div className='n-flex max-h-24'>
             <Dropzone
               isTesting={false}
@@ -117,66 +138,75 @@ export default function ConnectionModal({
             {isLoading && <div>Loading...</div>}
           </div>
           <div className='n-flex n-flex-row n-flex-wrap'>
-            <Dropdown
-              id='protocol'
+            <Select
               label='Protocol'
               type='select'
               size='medium'
-              disabled={false}
               selectProps={{
                 onChange: (newValue) => newValue && setProtocol(newValue.value),
                 options: protocols.map((option) => ({ label: option, value: option })),
                 value: { label: protocol, value: protocol },
               }}
               className='w-1/4 inline-block'
-              fluid
+              isFluid
+              htmlAttributes={{
+                id: 'protocol',
+              }}
             />
             <div className='ml-[5%] w-[70%] inline-block'>
               <TextInput
-                id='url'
                 value={URI}
-                disabled={false}
+                isDisabled={false}
                 label='URI'
-                placeholder='localhost'
-                autoFocus
-                fluid
+                isFluid
                 onChange={(e) => setURI(e.target.value)}
-                onPaste={(e) => handleHostPasteChange(e)}
+                htmlAttributes={{
+                  id: 'url',
+                  placeholder: 'localhost',
+                  autoFocus: true,
+                  onPaste: handleHostPasteChange,
+                }}
               />
             </div>
           </div>
           <TextInput
-            id='database'
             value={database}
-            disabled={false}
+            isDisabled={false}
             label='Database (optional)'
-            placeholder='neo4j'
-            fluid
+            isFluid
             onChange={(e) => setDatabase(e.target.value)}
             className='w-full'
+            htmlAttributes={{
+              id: 'database',
+              placeholder: 'neo4j',
+            }}
           />
           <div className='n-flex n-flex-row n-flex-wrap mb-2'>
             <div className='w-[48.5%] mr-1.5 inline-block'>
               <TextInput
-                id='username'
                 value={username}
-                disabled={false}
+                isDisabled={false}
                 label='Username'
-                placeholder='neo4j'
-                fluid
+                isFluid
                 onChange={(e) => setUsername(e.target.value)}
+                htmlAttributes={{
+                  id: 'username',
+                  placeholder: 'neo4j',
+                }}
               />
             </div>
             <div className='w-[48.5%] ml-[1.5%] inline-block'>
               <TextInput
-                id='password'
                 value={password}
-                disabled={false}
+                isDisabled={false}
                 label='Password'
-                placeholder='password'
-                type='password'
-                fluid
+                isFluid
                 onChange={(e) => setPassword(e.target.value)}
+                htmlAttributes={{
+                  type: 'password',
+                  id: 'password',
+                  placeholder: 'password',
+                }}
               />
             </div>
           </div>

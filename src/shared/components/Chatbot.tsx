@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Widget, Typography, Avatar, TextInput } from '@neo4j-ndl/react';
 
-import ChatBotUserAvatar from '../assets/chatbot-user.png';
 import ChatBotAvatar from '../assets/chatbot-ai.png';
 
 type ChatbotProps = {
@@ -60,7 +59,7 @@ export default function Chatbot(props: ChatbotProps) {
     setListMessages((listMessages) => [...listMessages, userMessage]);
     setInputMessage('');
 
-    const chatbotReply = 'Hello Sir, how can I help you today?'; // Replace with getting a response from your chatbot through your APIs
+    const chatbotReply = 'Hello, how can I help you today?'; // Replace with getting a response from your chatbot through your APIs
     simulateTypingEffect(chatbotReply);
   };
 
@@ -83,28 +82,27 @@ export default function Chatbot(props: ChatbotProps) {
                 key={chat.id}
                 className={`flex gap-2.5 items-end ${chat.user === 'chatbot' ? 'flex-row' : 'flex-row-reverse'} `}
               >
-                <div className='w-8 h-8'>
+                <div className='w-8 h-8 mr-4 ml-4'>
                   {chat.user === 'chatbot' ? (
                     <Avatar
                       className='-ml-4'
                       hasStatus
                       name='KM'
-                      shape='square'
                       size='x-large'
                       source={ChatBotAvatar}
                       status='online'
                       type='image'
+                      shape='square'
                     />
                   ) : (
                     <Avatar
                       className=''
                       hasStatus
                       name='KM'
-                      shape='square'
                       size='x-large'
-                      source={ChatBotUserAvatar}
                       status='online'
                       type='image'
+                      shape='square'
                     />
                   )}
                 </div>
@@ -139,10 +137,12 @@ export default function Chatbot(props: ChatbotProps) {
         <form onSubmit={handleSubmit} className='flex gap-2.5 w-full'>
           <TextInput
             className='n-bg-palette-neutral-bg-default flex-grow-7 w-full'
-            type='text'
             value={inputMessage}
-            fluid
+            isFluid
             onChange={handleInputChange}
+            htmlAttributes={{
+              type: 'text',
+            }}
           />
           <Button type='submit'>Submit</Button>
         </form>

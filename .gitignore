@@ -131,3 +131,4 @@ dist
 package-lock.json
 
 docs/build
+vite.config.ts
